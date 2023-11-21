@@ -1,0 +1,3 @@
+#define HOST "NAME"
+
+#define GETREQ "GET PATH HTTP/1.2\r\nHost: NAME\r\n\r\n"
