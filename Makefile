@@ -4,7 +4,7 @@ SRC = bot.c conn.c main.c
 
 all: bot
 
-bot: config.h
+bot: config.h ${SRC}
 	${CC} ${CFLAGS} ${SRC} -o $@
 
 config.h: config.h.in
