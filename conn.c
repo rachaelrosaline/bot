@@ -5,13 +5,10 @@
 
 #include <sys/socket.h>
 
-#include <openssl/bio.h>
-#include <openssl/ssl.h>
-
 #include "config.h"
 #include "util.h"
 
-void conn(BIO *o, SSL_CTX *c) {
+void conn(BIO *o, SSL_CTX *c, char *t) {
     SSL *ssl = SSL_new(c);
 
     struct hostent *h = gethostbyname(HOST);
@@ -35,7 +32,7 @@ void conn(BIO *o, SSL_CTX *c) {
 
     SSL_set_fd(ssl, sock);
 
-    bot(o, ssl);
+    bot(o, ssl, t);
 
     SSL_free(ssl);
     close(sock);

@@ -1,10 +1,10 @@
-PATH = /api/v1/timelines/public
+KEY = 
 NAME = rosaline.systems
 
 LIBS = -lssl -lcrypto
 
-CPPFLAGS = ${LIBS}
-LDFLAGS = -O2
+CPPFLAGS =
+LDFLAGS = -O2 ${LIBS}
 
 CFLAGS = ${CPPFLAGS} ${LDFLAGS}
 

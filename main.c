@@ -1,11 +1,8 @@
 #include <stdio.h>
 
-#include <openssl/bio.h>
-#include <openssl/ssl.h>
-
 #include "util.h"
 
-int main() {
+int main(int argc, char *argv[]) {
     BIO *o = BIO_new_fp(stdout, BIO_NOCLOSE);
     SSL_CTX *c;
     if((c = SSL_CTX_new(TLSv1_2_client_method())) == NULL) {
@@ -13,7 +10,7 @@ int main() {
         return 1;
     }
 
-    conn(o, c);
+    conn(o, c, argv[1]);
 
     SSL_CTX_free(c);
 }

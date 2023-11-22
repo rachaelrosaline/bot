@@ -1,15 +1,14 @@
-#include <openssl/bio.h>
-#include <openssl/ssl.h>
-
 #include "config.h"
+#include "util.h"
 
-void bot(BIO *errout, SSL *s) {
+void bot(BIO *o, SSL *s, char* t) {
     if(SSL_connect(s) != 1) {
-        BIO_printf(errout, "SSL_connect failed\n");
+        BIO_printf(o, "SSL_connect failed\n");
         return;
     }
-    SSL_write(s, GETREQ, sizeof(GETREQ));
-    char out[16384];
-    SSL_read(s, out, 16384);
-    printf("%s\n", out);
+    char *p = post(t);
+    SSL_write(s, p, strnlen(p, 8192));
+    char r[16384];
+    SSL_read(s, r, 16384);
+    BIO_printf(o, "%s\n", r);
 }
