@@ -1,2 +1,2 @@
 ### synopsis
-`make && ./bot`
+`make && ./bot <text>`
